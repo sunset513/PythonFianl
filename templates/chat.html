@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gemini</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #111;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+      }
+      header,
+      .sidebar,
+      .content {
+        padding: 20px;
+      }
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #333;
+      }
+      .sidebar {
+        background-color: #222;
+        width: 60px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 50px;
+      }
+      .sidebar img {
+        width: 30px;
+        height: 30px;
+        margin-bottom: 20px;
+      }
+      .content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      .greeting {
+        font-size: 84px;
+        background: linear-gradient(45deg, #7b61ff, #ff61a6);
+        -webkit-background-clip: text;
+        color: transparent;
+      }
+
+      .question {
+        font-size: 44px;
+        margin: 20px 0;
+        color: gainsboro;
+      }
+      .options {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        font-size: 20px;
+      }
+      .option {
+        background-color: #333;
+        border-radius: 10px;
+        text-align: center;
+        padding: 10px 20px;
+        width: 150px;
+        height: 100px;
+      }
+      .down {
+        position: fixed;
+        bottom: 20px;
+      }
+      .input-area {
+        background-color: #333;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .input-area input {
+        background-color: hsl(0, 0%, 20%);
+        border: none;
+        color: white;
+        padding: 20px;
+        font-size: 16px;
+        border-radius: 20px;
+        width: 60vw;
+      }
+      .input-area img {
+        width: 20px;
+        height: 20px;
+      }
+      p{
+        mar
+        font-size: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div>Gemini</div>
+      <div>
+        <a
+          href="https://one.google.com/explore-plan/gemini-advanced?utm_source=gemini&utm_medium=web&utm_campaign=sidenav_evo&g1_landing_page=65"
+          ><button
+            style="
+              background-color: #555;
+              border: none;
+              color: white;
+              padding: 10px;
+              border-radius: 5px;
+              cursor: pointer;
+            "
+          >
+            試用 Gemini Advanced
+          </button></a
+        >
+      </div>
+    </header>
+    <div style="display: flex; flex: 1">
+      <div class="sidebar">
+        <img src="path/to/your/icon1.png" alt="icon1" />
+        <img src="path/to/your/icon2.png" alt="icon2" />
+        <img src="path/to/your/icon3.png" alt="icon3" />
+      </div>
+      <div class="content">
+        <div class="greeting">{{ session.username }} ，你好！</div>
+        <div class="question">有什麼我可以幫上忙的嗎？</div>
+        <!-- <div class="options">
+          <div class="option" id="option1">烹飪趨勢</div>
+          <div class="option" id="option2">體育推薦</div>
+          <div class="option" id="option3">歷史主題</div>
+          <div class="option" id="option4">趨勢研究</div>
+        </div> -->
+        <div class="down">
+          <div class="input-area">
+            <input type="text" placeholder="在這裡輸入提示" />
+          </div>
+          <p>
+            Gemini
+            可能會提供不準確的資訊，包括人物介紹，因此請查證回覆內容。個人隱私權與
+            Gemini 系列應用程式
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
