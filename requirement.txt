@@ -1,0 +1,5 @@
+torch
+flask_wtf
+WTForms
+flask
+transformers
