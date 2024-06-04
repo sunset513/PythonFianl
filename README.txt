@@ -25,11 +25,26 @@ pip install -r requirements.txt
 
 
 ## 三 開始使用
-
+1. 
 ```
 cd <檔案位置>
 ```
+2. 
+啟動虛擬環境：
 
+在 Windows 上：
+
+```
+myenv\Scripts\activate
+
+```
+
+在 Unix 或 MacOS 上：
+
+```
+source myenv/bin/activate
+```
+3. 
 ```
 python main.py
 ```

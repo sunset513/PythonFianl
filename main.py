@@ -1,9 +1,10 @@
-from flask import Flask, request, render_template, url_for, redirect, g, session, send_file,jsonify
+from flask import Flask, request, render_template, url_for, redirect, g, session, jsonify
 from flask_wtf import FlaskForm
 
 # 資料庫及表單
 from wtforms import StringField, PasswordField, SubmitField
-from wtforms.validators import DataRequired, Email, ValidationError, Regexp, Length
+from wtforms.validators import DataRequired, Email, ValidationError, Regexp
+
 import sqlite3
 
 # 大型語言模型
@@ -12,7 +13,6 @@ import torch
 
 tokenizer = AutoTokenizer.from_pretrained("microsoft/DialoGPT-medium")
 model = AutoModelForCausalLM.from_pretrained("microsoft/DialoGPT-medium")
-
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
@@ -48,15 +48,18 @@ def validate_password(form, field):
 
 class RegistrationForm(FlaskForm):
     username = StringField('使用者名稱', validators=[DataRequired(), validate_username])
-    password = StringField('密碼', validators=[DataRequired(), validate_password])
+    password = PasswordField('密碼', validators=[DataRequired(), validate_password])
     email = StringField('電子郵件', validators=[DataRequired(), Email(), Regexp(r'^[a-zA-Z0-9._%+-]+@gmail\.com$', message="電子郵件必須是XXX@gmail.com")])
     submit = SubmitField('註冊')
 
 class LoginForm(FlaskForm):
     username = StringField('使用者名稱', validators=[DataRequired()])
-    password = StringField('密碼', validators=[DataRequired()])
+    password = PasswordField('密碼', validators=[DataRequired()])
     submit = SubmitField('登入')
 
+@app.route('/')
+def index():
+    return redirect(url_for('login'))
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -78,7 +81,6 @@ def register():
 def login():
     form = LoginForm()
     if form.validate_on_submit():
-
         username = form.username.data
         password = form.password.data
 
@@ -108,15 +110,14 @@ def chat():
     if 'username' not in session:
         return redirect(url_for('login'))
     username = session['username']
-    
     return render_template('chat.html')
 
 # 聊天室訊息
-@app.route('/get', methods=['GET', 'POST'])
-def chat():
-    message =request.form['message']
-    input = message
-    return get_response(input)
+@app.route('/get', methods=['POST'])
+def get_message():
+    message = request.form['msg']
+    response = get_response(message)
+    return jsonify(response=response)
 
 def get_response(inputText):
     for step in range(5):
@@ -132,7 +133,6 @@ def get_response(inputText):
 
         # pretty print last ouput tokens from bot
         return format(tokenizer.decode(chat_history_ids[:, bot_input_ids.shape[-1]:][0], skip_special_tokens=True))
-
 
 if __name__ == '__main__':
     app.run(debug=True)

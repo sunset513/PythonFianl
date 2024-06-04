@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>歡迎首頁</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #1e1e1e;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+        }
+        h1 {
+            color: #bb86fc;
+            margin-bottom: 20px;
+        }
+        p {
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .buttons a, .buttons button {
+            background: #bb86fc;
+            color: white;
+            border: none;
+            padding: 0.7em 1.5em;
+            font-size: 1em;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            box-sizing: border-box;
+        }
+        .buttons a:hover, .buttons button:hover {
+            background: #9b59b6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>歡迎來到我們的網站</h1>
+        <p>感謝您訪問我們的網站。我們致力於提供最佳的服務與體驗。</p>
+        <div class="buttons">
+            <a href="{{ url_for('login') }}">登入</a>
+            <a href="{{ url_for('register') }}">註冊</a>
+        </div>
+    </div>
+</body>
+</html>
