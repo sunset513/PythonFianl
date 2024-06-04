@@ -17,163 +17,177 @@
 
     <title>Gemini</title>
     <style>
-           body {
-             margin: 0;
-             font-family: Arial, sans-serif;
-             background-color: #111;
-             color: white;
-             display: flex;
-             flex-direction: column;
-             height: 100vh;
-           }
-           header {
-             display: flex;
-             justify-content: space-between;
-             align-items: center;
-             padding: 20px;
-             border-bottom: 1px solid #333;
-             background-color: #111;
-             position: fixed;
-             width: 100%;
-             top: 0;
-             z-index: 1000;
-           }
-           .container {
-             display: flex;
-             flex: 1;
-             margin-top: 80px; /* Add margin to account for fixed header */
-           }
-           .sidebar {
-             background-color: #222;
-             width: 60px;
-             display: flex;
-             flex-direction: column;
-             align-items: center;
-             padding-top: 50px;
-             position: fixed;
-             height: calc(100vh - 80px); /* Adjust for fixed header */
-             top: 80px; /* Add margin to account for fixed header */
-             left: 0;
-           }
-           .sidebar img {
-             width: 30px;
-             height: 30px;
-             margin-bottom: 20px;
-           }
-           .content {
-             flex: 1;
-             display: flex;
-             flex-direction: column;
-             align-items: center;
-             justify-content: flex-start; /* Align items to the start */
-             margin-left: 60px; /* Add margin to account for sidebar width */
-             overflow-y: auto;
-             padding-top: 20px;
-             padding-bottom: 100px; /* Add padding to account for fixed footer */
-             width: calc(100% - 60px); /* Adjust width to be full width minus sidebar */
-           }
-           .greeting {
-             font-size: 48px;
-             background: linear-gradient(45deg, #7b61ff, #ff61a6);
-             -webkit-background-clip: text;
-             color: transparent;
-             margin-top: 20px;
-           }
-           .question {
-             font-size: 24px;
-             margin: 20px 0;
-             color: gainsboro;
-           }
-           #messageFormeight {
-             width: 80%; /* Increase the width */
-             max-width: 800px; /* Set a maximum width */
-           }
-           .footer {
-             position: fixed;
-             bottom: 0;
-             width: calc(100% - 60px);
-             left: 60px;
-             background-color: #111;
-             padding: 10px 20px;
-             box-sizing: border-box;
-             display: flex;
-             flex-direction: column;
-             align-items: center; /* Center the content */
-           }
-           .input-area {
-             background-color: #333;
-             border-radius: 20px;
-             display: flex;
-             align-items: center;
-             gap: 10px;
-             width: 100%;
-             max-width: 800px;
-             margin-bottom: 10px;
-           }
-           .input-area input {
-             background-color: hsl(0, 0%, 20%);
-             border: none;
-             padding: 10px;
-             font-size: 16px;
-             border-radius: 20px;
-             width: 800px;
-      /* Fill the entire input-area */
-           }
-           .input-area img {
-             width: 20px;
-             height: 20px;
-           }
-           .msg_cotainer_send,
-           .msg_cotainer {
-             max-width: 60%;
-             padding: 10px;
-             border-radius: 20px;
-             margin-bottom: 10px;
-             display: inline-block;
-             color: white;
-           }
-           .msg_cotainer_send {
-             background-color: #555; /* Match the user message background color */
-             color: white;
-             align-self: flex-end;
-           }
-           .msg_cotainer {
-             background-color: #007bff; /* Change bot message background color */
-             color: white;
-             align-self: flex-start;
-           }
-           .msg_time_send,
-           .msg_time {
-             font-size: 12px;
-             color: lightgray;
-             margin-top: 5px;
-             display: block;
-           }
-           .img_cont_msg {
-             display: flex;
-             align-items: center;
-             margin-right: 10px;
-           }
-           .img_cont_msg img {
-             width: 40px;
-             height: 40px;
-             border-radius: 50%;
-           }
-           .d-flex {
-             display: flex;
-           }
-           .justify-content-end {
-             justify-content: flex-end;
-           }
-           .justify-content-start {
-             justify-content: flex-start;
-           }
-           .mb-4 {
-             margin-bottom: 1.5rem;
-           }
-           .message-wrapper {
-             margin-bottom: 20px; /* Add space between user and bot messages */
-           }
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #111;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+      }
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        border-bottom: 1px solid #333;
+        background-color: #111;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+      }
+      .btn {
+        background-color: #555;
+        border: none;
+        color: white;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-left: 10px;
+      }
+      .btn:hover {
+        background-color: #777;
+      }
+      .container {
+        display: flex;
+        flex: 1;
+        margin-top: 80px; /* Add margin to account for fixed header */
+      }
+      .sidebar {
+        background-color: #222;
+        width: 60px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 50px;
+        position: fixed;
+        height: calc(100vh - 80px); /* Adjust for fixed header */
+        top: 80px; /* Add margin to account for fixed header */
+        left: 0;
+      }
+      .sidebar img {
+        width: 30px;
+        height: 30px;
+        margin-bottom: 20px;
+      }
+      .content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start; /* Align items to the start */
+        margin-left: 60px; /* Add margin to account for sidebar width */
+        overflow-y: auto;
+        padding-top: 20px;
+        padding-bottom: 100px; /* Add padding to account for fixed footer */
+        width: calc(
+          100% - 60px
+        ); /* Adjust width to be full width minus sidebar */
+      }
+      .greeting {
+        font-size: 48px;
+        background: linear-gradient(45deg, #7b61ff, #ff61a6);
+        -webkit-background-clip: text;
+        color: transparent;
+        margin-top: 20px;
+      }
+      .question {
+        font-size: 24px;
+        margin: 20px 0;
+        color: gainsboro;
+      }
+      #messageFormeight {
+        width: 80%; /* Increase the width */
+        max-width: 800px; /* Set a maximum width */
+      }
+      .footer {
+        position: fixed;
+        bottom: 0;
+        width: calc(100% - 60px);
+        left: 60px;
+        background-color: #111;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Center the content */
+      }
+      .input-area {
+        background-color: #333;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+        max-width: 800px;
+        margin-bottom: 10px;
+      }
+      .input-area input {
+        background-color: hsl(0, 0%, 20%);
+        border: none;
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 20px;
+        width: 800px;
+        /* Fill the entire input-area */
+      }
+      .input-area img {
+        width: 20px;
+        height: 20px;
+      }
+      .msg_cotainer_send,
+      .msg_cotainer {
+        max-width: 60%;
+        padding: 10px;
+        margin-right: 10px;
+        border-radius: 20px;
+        margin-bottom: 10px;
+        display: inline-block;
+        color: white;
+      }
+      .msg_cotainer_send {
+        background-color: #555; /* Match the user message background color */
+        color: white;
+        align-self: flex-end;
+      }
+      .msg_cotainer {
+        background-color: #555; /* Change bot message background color */
+        color: white;
+        align-self: flex-start;
+      }
+      .msg_time_send,
+      .msg_time {
+        font-size: 12px;
+        color: lightgray;
+        margin-top: 5px;
+        display: block;
+      }
+      .img_cont_msg {
+        display: flex;
+        align-items: center;
+        margin-right: 10px;
+      }
+      .img_cont_msg img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+      }
+      .d-flex {
+        display: flex;
+      }
+      .justify-content-end {
+        justify-content: flex-end;
+      }
+      .justify-content-start {
+        justify-content: flex-start;
+      }
+      .mb-4 {
+        margin-bottom: 1.5rem;
+      }
+      .message-wrapper {
+        margin-bottom: 20px; /* Add space between user and bot messages */
+      }
     </style>
   </head>
   <body>
@@ -182,19 +196,16 @@
       <div>
         <a
           href="https://one.google.com/explore-plan/gemini-advanced?utm_source=gemini&utm_medium=web&utm_campaign=sidenav_evo&g1_landing_page=65"
-          ><button
-            style="
-              background-color: #555;
-              border: none;
-              color: white;
-              padding: 10px;
-              border-radius: 5px;
-              cursor: pointer;
-            "
-          >
-            Try Gemini Advanced
-          </button></a
         >
+          <button class="btn">Try Gemini Advanced</button>
+        </a>
+        <a href="{{ url_for('login') }}">
+          <button class="btn" id="loginBtn">login</button>
+        </a>
+
+        <a href="{{ url_for('register') }}">
+          <button class="btn">signup</button>
+        </a>
       </div>
     </header>
     <div class="container">
@@ -205,7 +216,7 @@
       </div>
       <div class="content">
         <div class="greeting">hello,{{ session.username }}!</div>
-        <div class="question">Anything I can help you?？</div>
+        <div class="question">Anything I can help you with?</div>
         <div id="messageFormeight"></div>
       </div>
     </div>
@@ -214,7 +225,7 @@
         <form id="messageArea">
           <input
             type="text"
-            placeholder="在這裡輸入提示"
+            placeholder="Type your message..."
             id="text"
             name="msg"
             autocomplete="off"
@@ -224,14 +235,21 @@
         </form>
       </div>
       <p>
-        Gemini
-        可能會提供不準確的資訊，包括人物介紹，因此請查證回覆內容。個人隱私權與
-        Gemini 系列應用程式
+        <p>
+          Gemini
+          may provide inaccurate information, including character introductions, so please verify the content of the reply.
+        </p>
       </p>
     </div>
 
     <script>
       $(document).ready(function () {
+        // Auto-scroll to the bottom when a new message is added
+        function scrollToBottom() {
+          var element = document.getElementById("messageFormeight");
+          element.scrollTop = element.scrollHeight;
+        }
+
         $("#messageArea").on("submit", function (event) {
           const date = new Date();
           const hour = date.getHours();
@@ -244,10 +262,11 @@
             rawText +
             '<span class="msg_time_send">' +
             str_time +
-            '</span></div><div class="img_cont_msg"><img src="https://i.ibb.co/d5b84Xw/Untitled-design.png" class="rounded-circle user_img_msg"></div></div>';
+            '</span></div><div class="img_cont_msg"><div>{{ session.username }}</div></div></div>';
 
           $("#text").val("");
           $("#messageFormeight").append($.parseHTML(userHtml));
+          scrollToBottom(); // Scroll to the bottom when a new user message is added
 
           $.ajax({
             data: {
@@ -259,12 +278,13 @@
             var botResponse = typeof data === "object" ? data.response : data;
 
             var botHtml =
-              '<div class="message-wrapper d-flex justify-content-start mb-4"><div class="img_cont_msg"><img src="https://i.ibb.co/fSNP7Rz/icons8-chatgpt-512.png" class="rounded-circle user_img_msg"></div><div class="msg_cotainer">' +
+              '<div class="message-wrapper d-flex justify-content-start mb-4"><div class="img_cont_msg"><img src="../static/img/gemini_sparkle_v002_d4735304ff6292a690345.svg" class="rounded-circle user_img_msg"></div><div class="msg_cotainer">' +
               botResponse +
               '<span class="msg_time">' +
               str_time +
               "</span></div></div>";
             $("#messageFormeight").append($.parseHTML(botHtml));
+            scrollToBottom(); // Scroll to the bottom when a new bot message is added
           });
           event.preventDefault();
         });

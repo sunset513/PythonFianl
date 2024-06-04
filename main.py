@@ -36,7 +36,7 @@ def validate_username(form, field):
     db = get_db()
     user = db.execute('SELECT * FROM users WHERE username = ?', (field.data,)).fetchone()
     if user:
-        raise ValidationError('此名稱已被使用')
+        raise ValidationError('This name has already been taken')
 
 def validate_password(form, field):
     password = field.data
@@ -44,18 +44,18 @@ def validate_password(form, field):
             or not any(c.islower() for c in password)
             or not any(c.isdigit() for c in password)
             or not any(c in '@$!%*?&' for c in password)):
-        raise ValidationError('密碼必須超過8個字元且包含英文大小寫和特殊字元')
+        raise ValidationError('Password must be at least 8 characters long and contain uppercase and lowercase letters, digits, and special characters')
 
 class RegistrationForm(FlaskForm):
-    username = StringField('使用者名稱', validators=[DataRequired(), validate_username])
-    password = PasswordField('密碼', validators=[DataRequired(), validate_password])
-    email = StringField('電子郵件', validators=[DataRequired(), Email(), Regexp(r'^[a-zA-Z0-9._%+-]+@gmail\.com$', message="電子郵件必須是XXX@gmail.com")])
-    submit = SubmitField('註冊')
+    username = StringField('Username', validators=[DataRequired(), validate_username])
+    password = PasswordField('Password', validators=[DataRequired(), validate_password])
+    email = StringField('Email', validators=[DataRequired(), Email(), Regexp(r'^[a-zA-Z0-9._%+-]+@gmail\.com$', message="Email must be in the format XXX@gmail.com")])
+    submit = SubmitField('Register')
 
 class LoginForm(FlaskForm):
-    username = StringField('使用者名稱', validators=[DataRequired()])
-    password = PasswordField('密碼', validators=[DataRequired()])
-    submit = SubmitField('登入')
+    username = StringField('Username', validators=[DataRequired()])
+    password = PasswordField('Password', validators=[DataRequired()])
+    submit = SubmitField('Login')
 
 @app.route('/')
 def index():
@@ -92,7 +92,7 @@ def login():
             return redirect(url_for('chat'))
         else:
             form.password.data = ''
-            return render_template('login.html', form=form, error='使用者名稱或密碼錯誤')
+            return render_template('login.html', form=form, error='Incorrect username or password')
     form.password.data = ''
     return render_template('login.html', form=form)
 

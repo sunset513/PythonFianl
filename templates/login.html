@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>玩家登入</title>
+    <title>Login</title>
     <style>
         body {
             margin: 0;
@@ -85,7 +85,7 @@
 <body>
     <div class="container">
         <img src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_light_color_92x30dp.png" alt="Logo">
-        <h2>玩家登入</h2>
+        <h2>Login</h2>
         <form method="POST">
             {{ form.hidden_tag() }}
             <p>
@@ -98,7 +98,7 @@
             </p>
             <p>{{ form.submit() }}</p>
         </form>
-        <a href="{{ url_for('register') }}">註冊</a>
+        <a href="{{ url_for('register') }}">Register</a>
         {% if error %}
             <script type="text/javascript">
                 showAlert("{{ error }}");

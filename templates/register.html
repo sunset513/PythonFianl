@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="en"></html>
   <head>
     <meta charset="UTF-8" />
-    <title>玩家註冊</title>
+    <title>Player Registration</title>
     <style>
       body {
         font-family: Arial, sans-serif;
@@ -80,7 +80,7 @@
   </head>
   <body>
     <div class="container">
-      <h2>玩家註冊</h2>
+      <h2>Player Registration</h2>
       <form method="POST">
         {{ form.hidden_tag() }}
         <p>
@@ -109,7 +109,7 @@
         </p>
         <p>{{ form.submit() }}</p>
       </form>
-      <a href="{{ url_for('login') }}">返回登入</a>
+      <a href="{{ url_for('login') }}">Return to Login</a>
     </div>
   </body>
 </html>
