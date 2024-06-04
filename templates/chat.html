@@ -57,28 +57,25 @@
       }
       .sidebar {
         background-color: #222;
-        width: 60px;
+        width: 90px;
         display: flex;
-        flex-direction: column;
-        align-items: center;
+        align-items: end;
         padding-top: 50px;
+        padding-bottom: 10px;
+        padding-right: 10px;
         position: fixed;
         height: calc(100vh - 80px); /* Adjust for fixed header */
         top: 80px; /* Add margin to account for fixed header */
         left: 0;
       }
-      .sidebar img {
-        width: 30px;
-        height: 30px;
-        margin-bottom: 20px;
-      }
+
       .content {
         flex: 1;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: flex-start; /* Align items to the start */
-        margin-left: 60px; /* Add margin to account for sidebar width */
+        margin-left: 90px; /* Add margin to account for sidebar width */
         overflow-y: auto;
         padding-top: 20px;
         padding-bottom: 100px; /* Add padding to account for fixed footer */
@@ -106,7 +103,7 @@
         position: fixed;
         bottom: 0;
         width: calc(100% - 60px);
-        left: 60px;
+        left: 90px;
         background-color: #111;
         box-sizing: border-box;
         display: flex;
@@ -125,6 +122,8 @@
       }
       .input-area input {
         background-color: hsl(0, 0%, 20%);
+        color: hsl(0, 0%, 20%);
+
         border: none;
         padding: 10px;
         font-size: 16px;
@@ -132,6 +131,13 @@
         width: 800px;
         /* Fill the entire input-area */
       }
+      .input-area input:focus {
+          outline: none;
+          background-color: hsl(0, 1%, 24%);
+          color: white;
+          box-shadow: 0 0 8px #7b61ff;
+        }
+      
       .input-area img {
         width: 20px;
         height: 20px;
@@ -192,15 +198,12 @@
   </head>
   <body>
     <header>
-      <div>Gemini</div>
+      <h2>Gemini</h2>
       <div>
         <a
           href="https://one.google.com/explore-plan/gemini-advanced?utm_source=gemini&utm_medium=web&utm_campaign=sidenav_evo&g1_landing_page=65"
         >
           <button class="btn">Try Gemini Advanced</button>
-        </a>
-        <a href="{{ url_for('login') }}">
-          <button class="btn" id="loginBtn">login</button>
         </a>
 
         <a href="{{ url_for('register') }}">
@@ -210,9 +213,11 @@
     </header>
     <div class="container">
       <div class="sidebar">
-        <img src="path/to/your/icon1.png" alt="icon1" />
-        <img src="path/to/your/icon2.png" alt="icon2" />
-        <img src="path/to/your/icon3.png" alt="icon3" />
+        
+        <a href="{{ url_for('login') }}">
+          <button class="btn" id="loginBtn">logout</button>
+        </a>
+
       </div>
       <div class="content">
         <div class="greeting">hello,{{ session.username }}!</div>
