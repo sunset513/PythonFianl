@@ -14,7 +14,6 @@
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
     <title>Gemini</title>
     <style>
       body {
@@ -47,6 +46,12 @@
         cursor: pointer;
         margin-left: 10px;
       }
+      #btnSpecial {
+        background: linear-gradient(45deg, #7b61ff, #e561ff);
+      }
+      #account {
+        border-radius: 20%;
+      }
       .btn:hover {
         background-color: #777;
       }
@@ -68,7 +73,6 @@
         top: 80px; /* Add margin to account for fixed header */
         left: 0;
       }
-
       .content {
         flex: 1;
         display: flex;
@@ -80,7 +84,7 @@
         padding-top: 20px;
         padding-bottom: 100px; /* Add padding to account for fixed footer */
         width: calc(
-          100% - 60px
+          100% - 90px
         ); /* Adjust width to be full width minus sidebar */
       }
       .greeting {
@@ -102,7 +106,7 @@
       .footer {
         position: fixed;
         bottom: 0;
-        width: calc(100% - 60px);
+        width: calc(100% - 90px);
         left: 90px;
         background-color: #111;
         box-sizing: border-box;
@@ -131,13 +135,13 @@
         width: 800px;
         /* Fill the entire input-area */
       }
+
       .input-area input:focus {
-          outline: none;
-          background-color: hsl(0, 1%, 24%);
-          color: white;
-          box-shadow: 0 0 8px #7b61ff;
-        }
-      
+        outline: none;
+        background-color: hsl(0, 1%, 24%);
+        color: white;
+        box-shadow: 0 0 8px #7b61ff;
+      }
       .input-area img {
         width: 20px;
         height: 20px;
@@ -151,6 +155,8 @@
         margin-bottom: 10px;
         display: inline-block;
         color: white;
+        opacity: 0; /* Initially hidden */
+        animation: fadeIn 0.7s forwards; /* Animation for fading in */
       }
       .msg_cotainer_send {
         background-color: #555; /* Match the user message background color */
@@ -194,6 +200,11 @@
       .message-wrapper {
         margin-bottom: 20px; /* Add space between user and bot messages */
       }
+      @keyframes fadeIn {
+        to {
+          opacity: 1; /* Fully visible */
+        }
+      }
     </style>
   </head>
   <body>
@@ -203,24 +214,22 @@
         <a
           href="https://one.google.com/explore-plan/gemini-advanced?utm_source=gemini&utm_medium=web&utm_campaign=sidenav_evo&g1_landing_page=65"
         >
-          <button class="btn">Try Gemini Advanced</button>
+          <button class="btn" id="btnSpecial">Try Gemini Advanced</button>
         </a>
-
-        <a href="{{ url_for('register') }}">
+        <!-- <a href="{{ url_for('register') }}">
           <button class="btn">signup</button>
-        </a>
+        </a> -->
+        <button class="btn" id="account">{{ session.username }}</button>
       </div>
     </header>
     <div class="container">
       <div class="sidebar">
-        
         <a href="{{ url_for('login') }}">
           <button class="btn" id="loginBtn">logout</button>
         </a>
-
       </div>
       <div class="content">
-        <div class="greeting">hello,{{ session.username }}!</div>
+        <div class="greeting">hello, {{ session.username }}!</div>
         <div class="question">Anything I can help you with?</div>
         <div id="messageFormeight"></div>
       </div>
@@ -240,13 +249,10 @@
         </form>
       </div>
       <p>
-        <p>
-          Gemini
-          may provide inaccurate information, including character introductions, so please verify the content of the reply.
-        </p>
+        Gemini may provide inaccurate information, including character
+        introductions, so please verify the content of the reply.
       </p>
     </div>
-
     <script>
       $(document).ready(function () {
         // Auto-scroll to the bottom when a new message is added
@@ -254,25 +260,21 @@
           var element = document.getElementById("messageFormeight");
           element.scrollTop = element.scrollHeight;
         }
-
         $("#messageArea").on("submit", function (event) {
           const date = new Date();
           const hour = date.getHours();
           const minute = date.getMinutes();
           const str_time = hour + ":" + minute;
           var rawText = $("#text").val();
-
           var userHtml =
             '<div class="message-wrapper d-flex justify-content-end mb-4"><div class="msg_cotainer_send">' +
             rawText +
             '<span class="msg_time_send">' +
             str_time +
             '</span></div><div class="img_cont_msg"><div>{{ session.username }}</div></div></div>';
-
           $("#text").val("");
           $("#messageFormeight").append($.parseHTML(userHtml));
           scrollToBottom(); // Scroll to the bottom when a new user message is added
-
           $.ajax({
             data: {
               msg: rawText,
@@ -281,7 +283,6 @@
             url: "/get",
           }).done(function (data) {
             var botResponse = typeof data === "object" ? data.response : data;
-
             var botHtml =
               '<div class="message-wrapper d-flex justify-content-start mb-4"><div class="img_cont_msg"><img src="../static/img/gemini_sparkle_v002_d4735304ff6292a690345.svg" class="rounded-circle user_img_msg"></div><div class="msg_cotainer">' +
               botResponse +

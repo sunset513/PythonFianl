@@ -120,7 +120,7 @@ def get_message():
     return jsonify(response=response)
 
 def get_response(inputText):
-    for step in range(5):
+    for step in range(15):
 
         # encode the new user input, add the eos_token and return a tensor in Pytorch
         new_user_input_ids = tokenizer.encode(str(inputText) + tokenizer.eos_token, return_tensors='pt')
