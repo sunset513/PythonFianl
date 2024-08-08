@@ -30,11 +30,7 @@ git clone https://github.com/sunset513/PythonFianl.git
 ```
 cd <檔案位置>
 ```
-3. 打開終端機，透過 requirements.txt 安裝必要套件
 
-```
-pip install -r requirements.txt
-```
 
 
 ## 三 開始使用
@@ -56,7 +52,12 @@ myenv\Scripts\activate
 ```
 source myenv/bin/activate
 ```
-3. 執行
+3. 打開終端機，透過 requirements.txt 安裝必要套件
+
+```
+pip install -r requirements.txt
+```
+4. 執行
 ```
 python main.py
 ```
